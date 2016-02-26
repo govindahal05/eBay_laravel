@@ -14,44 +14,7 @@ class UserController extends \BaseController {
 		return View::make('users/index',['users'=>$users]);
 
 	}
-	 public function register()
-    {
-        $name = \Input::get('name');
-        $address = \Input::get('address');
-        $phone = \Input::get('phone');
-        $email = \Input::get('email');
-        $gender = \Input::get('gender');
-        $username = \Input::get('username');
-        $password = \Input::get('password');
-
-        $validator = Validator::make([
-                'username' => $username,
-                'password' => $password,
-            ],
-            [
-            'username' => 'unique:users,username',
-            'password' => 'min:4',
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->withmessages('Register filed');
-        }
-
-        else{
-            User::create([
-                'name' => $name,
-                'address' =>$address,
-                'phone' => $phone,
-                'email' => $email,
-                'gender' => $gender,
-                'username' => $username,
-                'password' => Hash::make($password)
-            ]);
-			Session::flash('message', "Book Added");
-        	return Redirect::back();
-            return View::make('register');
-        }
-    }
+	
 	Public function show($username)
 	{
 		$user = User::whereUsername($username)->first(); 

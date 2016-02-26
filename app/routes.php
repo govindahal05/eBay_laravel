@@ -5,7 +5,7 @@ Route::get('/', function()
 	return View::make('frontend');
 });
 
-Route::get('/login','AuthController@showLogin');
+Route::get('login','AuthController@showLogin');
 Route::post('login','AuthController@login');
 
 Route::post('admin', function()
@@ -16,10 +16,10 @@ Route::post('member', function()
 {
 	return View::make('members/member_dashboard');
 });
-Route::get('member', function()
+/*Route::get('member', function()
 {
 	return View::make('members/member_dashboard');
-});
+});*/
 
 Route::get('adminPanel',['as'=>'admin','uses'=>'AuthController@gotoadmin']);
 Route::get('memberPanel',['as'=>'member','uses'=>'AuthController@gotomember']);
@@ -54,5 +54,9 @@ Route::get('editdeletebook', function(){
 Route::get('register', function(){
 	return View::make('register');
 });
-Route::post('register','userController@register');
+Route::post('register','AuthController@register');
 
+/*
+*** logout
+*/
+Route::get('/logout','AuthController@logout');

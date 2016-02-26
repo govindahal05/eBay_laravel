@@ -12,6 +12,7 @@
       <div class="form-group">
         {{Form::label('username','Username')}}
         {{ Form::text('username') }}
+        {{$errors->first('username','<span class=error>:message</span>')}}
       </div>
     <div class="form-group">
         {{Form::label('password','Password')}}

@@ -10,6 +10,7 @@
 	
 	<div id = 'navigation'>
 		<h2>Member Panel</h2>
+		<h3><a href="logout">Logout</a></h3>
 		<a href="displaybook">List Book</a><br />
 		<a href="booktaken"> Issued Book</a>
 	</div>

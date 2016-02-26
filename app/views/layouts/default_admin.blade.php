@@ -10,6 +10,7 @@
 	
 	<div id = 'navigation'>
 		<h2>Admin Panel</h2>
+		<h3><a href="logout">Logout</a></h3>
 		<a href="addbook">Add Book</a><br />
 		<a href="showbook">Show Book</a><br />
 		<a href="editdeletebook">Edit | Delete Book</a><br />
