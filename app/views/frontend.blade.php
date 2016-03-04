@@ -8,7 +8,7 @@
         <h3 class="panel-title">Member Login</h3>
       </div>
      <div class="panel-body">
-  {{ Form::open(array('url' => 'login', 'class' => 'well')) }}
+  {{ Form::open(array('url' =>'login', 'class' => 'well')) }}
       <div class="form-group">
         {{Form::label('username','Username')}}
         {{ Form::text('username') }}

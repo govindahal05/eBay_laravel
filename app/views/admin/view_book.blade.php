@@ -11,6 +11,7 @@
 			<th>Author Name</th>
 			<th>Price</th>
 			<th>Category</th>
+			<th>Operation</th>
 		</tr>
 	</thead>
 	<tbody> 
@@ -23,6 +24,7 @@
 			<td>{{ $book->author_name}}</td>
 			<td>{{ $book->price}}</td>
 			<td>{{ $book->category}}</td>
+			<td><a href="bookEdit">Edit</a>|<a href="bookDelete">Delete</a></td>
 						
 		</tr>
 		{{ $sno++ }}

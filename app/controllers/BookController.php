@@ -1,135 +1,55 @@
 <?php
-
-class BookController extends \BaseController {
-
+use Illuminate\Http\Request;
+// use Libraries\Authentications\Authentication;
+// use Libraries\Validations\Validator;
+use Repositories\BookRepository;
+class BookController extends BaseController {
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
+	 * @param Request $request
+	 * @param BookRepository $book
 	 */
-	public function index()
-	{
-		
+	public function __construct(Request $request, BookRepository $book) {
+		$this->request = $request;
+		$this->book = $book;
 	}
-
-
+	public function createbook() {
+		$data =Input::all();
+		$books = $this->book->add($data);
+		Session::flash('message', "Book Successfully Added");
+		return Redirect::back();
+	}
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
+	 * @return mixed
 	 */
-	public function create()
-	{
-		 $name = \Input::get('name');
-        $isbnno = \Input::get('isbnno');
-        $edition = \Input::get('edition');
-        $author_name = \Input::get('author_name');
-        $price = \Input::get('price');
-        $category = \Input::get('category');
-
-        //return $category;
-        /*$validator = Validator::make([
-                'name' => $name,
-                'author_name'=>$author
-            ],
-            [
-            'name' => 'unique:users,username',
-            'author' => 'min:4',
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->withmessages('Register filed');
-        }
-
-        else{*/
-            Books::create([
-                'isbn_no' =>$isbnno,
-                'edition' => $edition,
-                'author_name' => $author_name,
-                'book_name' => $name,
-                'price' => $price,
-                'category' => $category,
-            ]);
-
-           Session::flash('message', "Book Added");
-        		return Redirect::back();
-       // }
+	public function show() {
+		$books = $this->book->getAllBooks();
+		return View::make('admin/view_book')->with("books", $books);
 	}
-
-
+	public function membershow() {
+		$books = $this->book->getAllBooks();
+		return View::make('members/view_book')->with("books", $books);
+	}
+	public function editBooks() {
+		$data = $this->request->all();
+		$books = $this->book->update($data);
+		return Redirect::route('view');
+	}
 	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
+	 * @param $bookid
 	 */
-	public function store()
-	{
-		
+	public function deleteBooks($bookid) {
+		$this->book->deleteBooks($bookid);
+		return Redirect::back();
 	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show()
-	{	
-		$books = Books::get();
-		//dd($books);
-		$i = 1;
-
-		 return View::make('admin.view_book')->with(['sno' => $i, 'books'=>$books]);
+	/*public function filterbooks() {
+		# code...
+		$category = \Input::get('category');
+		if ($category != 'All') {
+			$books = Book::where('category', '=', $category)->get();
+			return View::make('user/userdashboard', ['allBooks' => $books, 'cat' => $category]); //->with("allBooks", $books);
+		} else {
+			$books = Book::get();
+			$no = sizeof($books);
+			return View::make('user/userdashboard')->with("allBooks", $books);
+		}*/
 	}
-	public function membershow()
-	{	
-		$books = Books::get();
-		//dd($books);
-		$i = 1;
-
-		 return View::make('members.view_book')->with(['sno' => $i, 'books'=>$books]);
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-	public function addbookredirect()
-	{
-		
-	}
-
-
-}

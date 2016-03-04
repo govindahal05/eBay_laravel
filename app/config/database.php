@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'library_mgmt_sys',
+			'database'  => 'library_system',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

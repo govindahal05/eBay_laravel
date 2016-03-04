@@ -1,12 +1,14 @@
+
 <?php
-namespace Libraries\Validations;
-class Validator{
-    public function validate($validate, $rules) {
+class CustomValidator
+{
+    public function validate($validate, $rules)
+    {
         $validation = \Validator::make(
             $validate,
             $rules
         );
-        if ( $validation->fails() ) {
+        if ($validation->fails()) {
             //return $validation->messages();
             return $validation;
         }

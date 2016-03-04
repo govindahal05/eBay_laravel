@@ -16,8 +16,10 @@
 	</div>
 	
 	<div class="view-content">
-	<!-- $username = Session::get('user'); -->
-		<h2>Welcome {{ Session::get('user') }} </h2>
+	@if (Session::has('message'))
+         <div class="regalert">{{ Session::get('message') }}</div>
+     @endif
+		<h2>Welcome {{ Session::get('username') }} </h2>
 		@yield('content') 
 	</div>
 	
